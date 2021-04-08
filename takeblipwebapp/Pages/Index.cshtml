@@ -1,0 +1,112 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<script>
+    window.canUpdate = false;
+    window.addEventListener("DOMContentLoaded", function (event) { init() });
+</script>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the <strong><em>Take Blip Chat</em></strong></h1>
+    <p><em>A friendship kingdom...</em></p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <hr />
+
+        @{
+            takeblipfunction._TBCPKG tbcpkg1 = ViewData["tbcpkg"] as takeblipfunction._TBCPKG;
+
+            if (tbcpkg1 != null)
+            {
+                <form method="post">
+                    <input type="hidden" id="update" name="update" value="update" />
+                    <input type="hidden" id="sessionid" name="sessionid" value="@tbcpkg1.sessionid" />
+                    <input type="hidden" id="room" name="room" value="@tbcpkg1.room" />
+                </form>
+            }
+        }
+
+    <form method="post">
+        @{
+            takeblipfunction._TBCPKG tbcpkg = ViewData["tbcpkg"] as takeblipfunction._TBCPKG;
+
+            string userLogged = tbcpkg is null || String.IsNullOrEmpty(tbcpkg.sessionid) || String.IsNullOrEmpty(tbcpkg.nickname) ? null : tbcpkg.nickname;
+
+            if (tbcpkg != null)
+            {
+                @*@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(tbcpkg, Newtonsoft.Json.Formatting.Indented))*@
+                @*<hr />*@
+
+                <input type="hidden" id="sessionid" name="sessionid" value="@tbcpkg.sessionid" />
+                <input type="hidden" id="room" name="room" value="@tbcpkg1.room" />
+            }
+
+            if (String.IsNullOrEmpty(userLogged))
+            {
+                <label>Welcome to our chat server. Please provide a nickname:</label><br>
+                <label for="nickname">nickname:</label> <input type="text" id="nickname" name="nickname" placeholder="nickname" value="molchat" />
+            }
+            else
+            {
+                <label for="message">message:</label>
+                <input type="text" onfocus="window.canUpdate = false" onblur="window.canUpdate = true" style="width:250px" id="message" name="message" placeholder="message" value="" /><input type="checkbox" id="publik" name="publik" value="no" /><label for="publik">PRV</label>
+            }
+
+            <input type="submit" value=">>" style="width:100px;cursor:pointer;" />
+
+            if (!String.IsNullOrEmpty(userLogged))
+            {
+
+                <span>[</span>
+                <a href="#" onclick="$('#message').val('/newroom ?'); return false;">new room</a>
+                <span>]</span>
+
+                <span>[</span>
+                <a href="#" onclick="$('#message').val('/rooms'); return false;">rooms</a>
+                <span>]</span>
+
+                <span>[</span>
+                <a href="#" onclick="$('#message').val('/exit'); return false;">logoff</a>
+                <span>]</span>
+            }
+        }
+    </form>
+
+        <div id="chatDiv">
+            <hr />
+            <p>
+                <strong>
+                    @{
+                        takeblipfunction._TBCPKG tbcpkgoncemore = ViewData["tbcpkg"] as takeblipfunction._TBCPKG;
+
+                        string console = tbcpkgoncemore is null ? null : tbcpkgoncemore?.console;
+
+                        if (!String.IsNullOrEmpty(console))
+                        {
+                            string[] consoleLines = console.Split(System.Environment.NewLine);
+
+                            foreach (var line in consoleLines)
+                            {
+                                @*@line*@
+                                @Html.Raw(line)
+
+                                //WriteLiteral(line);
+                                <br>
+                            }
+                        }
+                        else
+                        {
+                            @*<span>please wait, loading chat information...</span>*@
+                        }
+                    }
+                </strong>
+            </p>
+        </div>
+    </div>
+</div>
