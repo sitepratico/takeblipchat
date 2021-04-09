@@ -7,12 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "takeblipwebapp", "takeblipw
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "takeblipfunction", "takeblipfunction\takeblipfunction.csproj", "{A69B27BE-6FE3-4D84-9131-0D61C78238E9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Azure", "Azure", "{39196A3F-A124-4D1E-8606-0E0D67050106}"
-	ProjectSection(SolutionItems) = preProject
-		cosmosdbtakeblipchat.json = cosmosdbtakeblipchat.json
-		storagetakeblipchat.json = storagetakeblipchat.json
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

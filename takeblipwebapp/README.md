@@ -17,6 +17,9 @@ This chat uses Microsoft Azure Cosmos DB service to store and access user messag
 ## About the author
 Wanderson Andrade, a Take Blip candidate
 
+## The Take Blip Chat is published for tests:
+https://webapptakeblipchat.azurewebsites.net/
+
 ## Azure Resources
 
 ## Azure Function App
