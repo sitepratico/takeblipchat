@@ -17,6 +17,59 @@ This chat uses Microsoft Azure Cosmos DB service to store and access user messag
 ## About the author
 Wanderson Andrade, a Take Blip candidate
 
+## The Take Blip Chat is published for tests:
+https://webapptakeblipchat.azurewebsites.net/
+
+## Azure Resources
+
+## Azure Function App
+HTTP Triggered function updates de Cosmos DB
+
+## Azure App Service (Web Application)
+User Interface comunicate with the Function App
+
+## Azure Cosmos DB
+Contain 3 Containers: message, room and user, columns defined as classes below
+
+public class ChatMessage
+{
+    public string sessionid { get; set; }
+    public bool publik { get; set; }
+    public string recipient { get; set; }
+    public string message { get; set; }
+    public DateTime datetime { get; set; }
+    public string messageComplete { get; set; }
+    public string room { get; set; }
+}
+
+public class ChatRoom
+{
+    public string name { get; set; }
+    public DateTime lastupdate { get; set; }
+}
+
+public class ChatUser
+{
+    public string sessionid { get; set; }
+    public string nickname { get; set; }
+    public DateTime lastupdate { get; set; }
+    public bool offline { get; set; }
+    public string room { get; set; }
+}
+
+public class _TBCPKG
+{
+    public string sessionid { get; set; }
+    public string nickname { get; set; }
+    public string message { get; set; }
+    public string publik { get; set; }
+    public string console { get; set; }
+    public string room { get; set; }
+}
+
+## Azure Storage
+Storage for the Serverless Services
+
 ## Chat Help
 
 Take Blip Chat - Commands
@@ -36,3 +89,7 @@ create new room
 
 /exit
 logoff
+
+
+
+
